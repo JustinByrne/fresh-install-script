@@ -10,9 +10,9 @@ sudo apt install -y zsh
 chsh -s $(which zsh)
 
 # oh my zsh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-curl -o ~/.zshrc https://raw.githubusercontent.com/JustinByrne/dotfiles/main/.zshrc
-curl -o ~/.zsh_aliases https://raw.githubusercontent.com/JustinByrne/dotfiles/main/.zsh_aliases
+ZSH=/home/$USER/~.om-my-zsh sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+curl -o /home/$USER/.zshrc https://raw.githubusercontent.com/JustinByrne/dotfiles/main/.zshrc
+curl -o /home/$USER/.zsh_aliases https://raw.githubusercontent.com/JustinByrne/dotfiles/main/.zsh_aliases
 
 # install fira font
 sudo apt install -y fonts-firacode
@@ -82,7 +82,8 @@ curl https://desktop.docker.com/linux/main/amd64/docker-desktop-4.26.1-amd64.deb
 sudo apt install -y /tmp/docker-desktop-amd64.deb
 rm /tmp/docker-desktop-amd64.deb
 sudo apt install -y golang-docker-credential-helpers
+mkdir /home/$USER/.docker
 echo "{
 	"credsStore": "pass"
-}" > ~/.docker/config.json
+}" > /home/$USER/.docker/config.json
 
