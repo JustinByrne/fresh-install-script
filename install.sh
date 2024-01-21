@@ -1,18 +1,18 @@
 #!/bin/bash
 
 # installing dependencies
-sudo apt install -y curl git wget gpg ca-certificates gnupg
-add-apt-repository -y ppa:ondrej/php
-apt update
+sudo apt install -y curl git wget gpg ca-certificates gnupg software-properties-common
+sudo add-apt-repository -y ppa:ondrej/php
+sudo apt update
 
 # install zsh
 sudo apt install -y zsh
 chsh -s $(which zsh)
 
 # oh my zsh
-ZSH=/home/$USER/~.om-my-zsh sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-curl -o /home/$USER/.zshrc https://raw.githubusercontent.com/JustinByrne/dotfiles/main/.zshrc
-curl -o /home/$USER/.zsh_aliases https://raw.githubusercontent.com/JustinByrne/dotfiles/main/.zsh_aliases
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+curl -o ~/.zshrc https://raw.githubusercontent.com/JustinByrne/dotfiles/main/.zshrc
+curl -o ~/.zsh_aliases https://raw.githubusercontent.com/JustinByrne/dotfiles/main/.zsh_aliases
 
 # install fira font
 sudo apt install -y fonts-firacode
@@ -69,6 +69,12 @@ composer global require laravel/installer
 curl -fsSL https://deb.nodesource.com/setup_21.x | sudo -E bash - &&\
 sudo apt-get install -y nodejs
 
+# install tableplus
+wget -qO - https://deb.tableplus.com/apt.tableplus.com.gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/tableplus-archive.gpg > /dev/null
+sudo add-apt-repository "deb [arch=amd64] https://deb.tableplus.com/debian/22 tableplus main"
+sudo apt update
+sudo apt install tableplus
+
 # install docker & docker desktop
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
@@ -82,8 +88,8 @@ curl https://desktop.docker.com/linux/main/amd64/docker-desktop-4.26.1-amd64.deb
 sudo apt install -y /tmp/docker-desktop-amd64.deb
 rm /tmp/docker-desktop-amd64.deb
 sudo apt install -y golang-docker-credential-helpers
-mkdir /home/$USER/.docker
+mkdir ~/.docker
 echo "{
-	"credsStore": "pass"
-}" > /home/$USER/.docker/config.json
+	\"credsStore\": \"pass\"
+}" > ~/.docker/config.json
 
