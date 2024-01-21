@@ -73,7 +73,7 @@ sudo apt-get install -y nodejs
 wget -qO - https://deb.tableplus.com/apt.tableplus.com.gpg.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/tableplus-archive.gpg > /dev/null
 sudo add-apt-repository "deb [arch=amd64] https://deb.tableplus.com/debian/22 tableplus main"
 sudo apt update
-sudo apt install tableplus
+sudo apt install -y tableplus
 
 # install docker & docker desktop
 sudo install -m 0755 -d /etc/apt/keyrings
